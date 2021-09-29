@@ -12,7 +12,7 @@ const app = express();
 app.use(cors());
 app.use(json());
 
-let companies=[
+let companies = [
 	{
 		id: nanoid(),
 		companie: 'Zender',
@@ -43,7 +43,8 @@ let persons = [
 	{
 		id: nanoid(),
 		idCompanie: '1',
-		prenom: 'Olivier'
+		prenom: 'Olivier',
+		nom: 'kash',
 	},
 	{
 		id: nanoid(),
@@ -71,33 +72,49 @@ let persons = [
 	},
 ];
 
-app.get('/todos', (req, res) => res.send([...persons,...companies]));
+app.get('/', (req, res) => {
+	console.log("hesa");
+	// res.;
+	res
+	.status(200)
+	.send([...persons, ...companies])
+}
+);
 
-app.post('/todos', (req, res) => {
-	const todo = { title: req.body.title, id: nanoid(), completed: false };
-	todos.push(todo);
-	return res.send(todo);
+app.get('/personall', (req, res) => {
+	console.log(persons);
+	res.send(persons)
 });
 
-app.patch('/todos/:id', (req, res) => {
-	const id = req.params.id;
-	const index = todos.findIndex((todo) => todo.id == id);
-	const completed = Boolean(req.body.completed);
-	if (index > -1) {
-		todos[index].completed = completed;
-	}
-	return res.send(todos[index]);
-});
+// app.post('/personnAdd', (req, res) => {
+// 	const newPerson = {
+// 		idCompanie: req.body.idCompanie,
+// 		prenom: req.body.prenom,
+// 		nom: req.body.prenom
+// 	};
+// 	persons.push(newPerson);
+// 	return res.send(persons);
+// });
 
-app.delete('/todos/:id', (req, res) => {
-	const id = req.params.id;
-	const index = todos.findIndex((todo) => todo.id == id);
-	if (index > -1) {
-		todos.splice(index, 1);
-	}
+// app.patch('/todos/:id', (req, res) => {
+// 	const id = req.params.id;
+// 	const index = todos.findIndex((todo) => todo.id == id);
+// 	const completed = Boolean(req.body.completed);
+// 	if (index > -1) {
+// 		todos[index].completed = completed;
+// 	}
+// 	return res.send(todos[index]);
+// });
 
-	res.send(todos);
-});
+// app.delete('/todos/:id', (req, res) => {
+// 	const id = req.params.id;
+// 	const index = todos.findIndex((todo) => todo.id == id);
+// 	if (index > -1) {
+// 		todos.splice(index, 1);
+// 	}
+
+// 	res.send(todos);
+// });
 
 const PORT = 7000;
 
