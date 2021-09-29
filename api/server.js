@@ -12,35 +12,66 @@ const app = express();
 app.use(cors());
 app.use(json());
 
-let todos = [
+let companies=[
 	{
 		id: nanoid(),
-		title: 'Se laver',
-		completed: true,
+		companie: 'Zender',
+		grade: 'DG',
 	},
 	{
 		id: nanoid(),
-		title: 'Manger',
-		completed: false,
+		companie: 'Amazon',
+		grade: 'DG',
 	},
 	{
 		id: nanoid(),
-		title: 'jouer',
-		completed: false,
+		companie: 'BraCongo',
+		grade: 'Dev',
 	},
 	{
 		id: nanoid(),
-		title: 'dormir',
-		completed: false,
+		companie: 'Simba',
+		grade: 'Designer',
 	},
 	{
 		id: nanoid(),
-		title: 'bien',
-		completed: false,
+		companie: 'APIcongo',
+		grade: 'graph',
+	},
+];
+let persons = [
+	{
+		id: nanoid(),
+		idCompanie: '1',
+		prenom: 'Olivier'
+	},
+	{
+		id: nanoid(),
+		idCompanie: '1',
+		nom: 'Serge',
+		prenom: 'jaco'
+	},
+	{
+		id: nanoid(),
+		idCompanie: '1',
+		nom: 'Paul',
+		prenom: 'muke',
+	},
+	{
+		id: nanoid(),
+		idCompanie: '1',
+		nom: 'celio',
+		prenom: 'mbaka',
+	},
+	{
+		id: nanoid(),
+		idCompanie: '1',
+		nom: 'Emma',
+		prenom: 'joseph'
 	},
 ];
 
-app.get('/todos', (req, res) => res.send(todos));
+app.get('/todos', (req, res) => res.send([...persons,...companies]));
 
 app.post('/todos', (req, res) => {
 	const todo = { title: req.body.title, id: nanoid(), completed: false };
