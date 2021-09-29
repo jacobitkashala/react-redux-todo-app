@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCompanie, deleteCompanie } from '../redux/reducerCompanie'
-import { getCompaniesAsync } from '../redux/reducerPersonAsync'
+import { getCompaniesAsync ,addCompanieAsync} from '../redux/reducerCompanieAsync ';
+import { addCompanie, deleteCompanie } from '../redux/reducerCompanie';
 
 const FormCompanie = ({ handlerClickNextForm }) => {
 	const [grade, setGrade] = useState('');
 	const [companie, setCompanie] = useState('');
+	const [gradeApi, setGradeApi] = useState('');
+	const [companieApi, setCompanieApi] = useState('');
 	const listCompanie = useSelector((state) => (state.companies))
 	const listCompanieApi = useSelector((state) => (state.companieAsync))
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(getCompaniesAsync())
+	}, [dispatch])
 
 	const onSubmit = (event) => {
 		event.preventDefault();
@@ -20,19 +26,25 @@ const FormCompanie = ({ handlerClickNextForm }) => {
 			}))
 		}
 		setCompanie("");
-		setGrade("");
-		event.target[0].value = "";
-		event.target[1].value = "";
 	};
-
+	const onSubmitApi = (event) => {
+		event.preventDefault();
+		event.stopPropagation();
+		if (companieApi && gradeApi) {
+			dispatch(addCompanieAsync({
+				companie: companieApi,
+				grade: gradeApi
+			}))
+		}
+		setCompanieApi("");
+		setGradeApi("");
+	};
 	const handlerClickDeleteCompanie = (id) => {
 		dispatch(deleteCompanie({
 			id: id
 		}))
 	}
-	useEffect(() => {
-		dispatch(getCompaniesAsync())
-	}, [dispatch])
+
 	return (
 		<>
 			<div className='row mt-3'>
@@ -142,15 +154,15 @@ const FormCompanie = ({ handlerClickNextForm }) => {
 						</tbody>
 					</table>
 				</div>
-				<form onSubmit={onSubmit} className='mt-3 mb-3 col-sm-12 col-md-4 col-lg-4'>
+				<form onSubmit={onSubmitApi} className='mt-3 mb-3 col-sm-12 col-md-4 col-lg-4'>
 					<label>Companie</label>
 					<input
 						type='text'
 						name="companie"
 						className='form-control mb-2 mr-sm-2'
 						placeholder='Companie..'
-						value={companie}
-						onChange={(event) => setCompanie(event.target.value)}
+						value={companieApi}
+						onChange={(event) => setCompanieApi(event.target.value)}
 					/>
 					<label >Grade</label>
 					<input
@@ -158,8 +170,8 @@ const FormCompanie = ({ handlerClickNextForm }) => {
 						name="grande"
 						className='form-control mb-2 mr-sm-2'
 						placeholder='grade'
-						value={grade}
-						onChange={(event) => setGrade(event.target.value)}
+						value={gradeApi}
+						onChange={(event) => setGradeApi(event.target.value)}
 					/>
 					<button type='submit' className='btn btn-success mb-2 mg-10'>
 						Enregistrer

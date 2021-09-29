@@ -73,8 +73,6 @@ let persons = [
 ];
 
 app.get('/', (req, res) => {
-	console.log("hesa");
-	// res.;
 	res
 		.status(200)
 		.send([...persons, ...companies])
@@ -82,22 +80,22 @@ app.get('/', (req, res) => {
 );
 
 app.get('/personall', (req, res) => {
-
 	res.send(persons)
 });
-app.get('/companieall', (req, res) => {
 
+app.get('/companieall', (req, res) => {
 	res.send(companies)
 });
-// app.post('/personnAdd', (req, res) => {
-// 	const newPerson = {
-// 		idCompanie: req.body.idCompanie,
-// 		prenom: req.body.prenom,
-// 		nom: req.body.prenom
-// 	};
-// 	persons.push(newPerson);
-// 	return res.send(persons);
-// });
+
+app.post('/companieadd', (req, res) => {
+	const newCompanie = {
+		idCompanie: nanoid(),
+		companie: req.body.companie,
+		grade: req.body.grade
+	};
+	companies.push(newCompanie);
+	return res.send(companies);
+});
 
 // app.patch('/todos/:id', (req, res) => {
 // 	const id = req.params.id;

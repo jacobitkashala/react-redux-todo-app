@@ -11,16 +11,6 @@ export const getPersonsAsync = createAsyncThunk(
 	}
 );
 
-export const getCompaniesAsync = createAsyncThunk(
-	'Persons/getPersonsAsync',
-	async () => {
-		const resp = await fetch('http://localhost:7000/companieall');
-		if (resp.ok) {
-			const companie = await resp.json();
-			return { companie };
-		}
-	}
-);
 // export const addTodoAsync = createAsyncThunk(
 // 	'todos/addTodoAsync',
 // 	async (payload) => {
@@ -75,12 +65,8 @@ export const personAsyncSlice = createSlice({
 	initialState: [],
 	extraReducers: {
 		[getPersonsAsync.fulfilled]: (state, action) => {
-			return action.payload.person;
-		},
-		[getCompaniesAsync.fulfilled]: (state, action) => {
-			console.log(action.payload)
-			return action.payload.companie;
-		},
+			return action.payload.personnes;
+		}
 		// [toggleCompleteAsync.fulfilled]: (state, action) => {
 		// 	const index = state.findIndex(
 		// 		(todo) => todo.id === action.payload.todo.id
