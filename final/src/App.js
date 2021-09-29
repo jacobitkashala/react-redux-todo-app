@@ -27,7 +27,7 @@ const App = () => {
 		}
 	}
 	return (
-		<div className='container bg-white p-4 mt-5'>
+		<div className='container'>
 			<h2>Etape{step + 1}</h2>
 			{
 				form(step)
