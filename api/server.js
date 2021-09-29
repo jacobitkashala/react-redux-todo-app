@@ -76,16 +76,19 @@ app.get('/', (req, res) => {
 	console.log("hesa");
 	// res.;
 	res
-	.status(200)
-	.send([...persons, ...companies])
+		.status(200)
+		.send([...persons, ...companies])
 }
 );
 
 app.get('/personall', (req, res) => {
-	console.log(persons);
+
 	res.send(persons)
 });
+app.get('/companieall', (req, res) => {
 
+	res.send(companies)
+});
 // app.post('/personnAdd', (req, res) => {
 // 	const newPerson = {
 // 		idCompanie: req.body.idCompanie,

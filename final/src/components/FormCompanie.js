@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCompanie, deleteCompanie } from '../redux/reducerCompanie'
+import { getCompaniesAsync } from '../redux/reducerPersonAsync'
 
 const FormCompanie = ({ handlerClickNextForm }) => {
 	const [grade, setGrade] = useState('');
 	const [companie, setCompanie] = useState('');
 	const listCompanie = useSelector((state) => (state.companies))
+	const listCompanieApi = useSelector((state) => (state.companieAsync))
 	const dispatch = useDispatch();
 
 	const onSubmit = (event) => {
@@ -19,22 +21,22 @@ const FormCompanie = ({ handlerClickNextForm }) => {
 		}
 		setCompanie("");
 		setGrade("");
-
 		event.target[0].value = "";
 		event.target[1].value = "";
-		//  event.reset();
 	};
 
 	const handlerClickDeleteCompanie = (id) => {
-		// event.preventDefault();
 		dispatch(deleteCompanie({
 			id: id
 		}))
 	}
+	useEffect(()=>{
+		dispatch(getCompaniesAsync())
+	},[dispatch])
 	return (
 		<div className='row'>
 			<div className='mt-3 mb-3 col-8'>
-				<h3> data local</h3>
+				<h3>Local</h3>
 				<table className="table col-10 w-100 table-dark table-hover table-striped">
 					<thead>
 						<tr>
@@ -70,7 +72,7 @@ const FormCompanie = ({ handlerClickNextForm }) => {
 						}
 					</tbody>
 				</table>
-				<h3> data API</h3>
+				<h3>API</h3>
 				<table className="table col-10 w-100 table-dark table-hover table-striped">
 					<thead>
 						<tr>
@@ -83,7 +85,7 @@ const FormCompanie = ({ handlerClickNextForm }) => {
 					</thead>
 					<tbody>
 						{
-							listCompanie.map((element, index) => {
+							listCompanieApi.map((element, index) => {
 								// console.log(companie);
 								return (
 									<tr key={index} className="datacompanie">

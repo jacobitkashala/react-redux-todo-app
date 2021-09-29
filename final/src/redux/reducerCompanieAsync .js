@@ -1,16 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-export const getPersonsAsync = createAsyncThunk(
-	'Persons/getPersonsAsync',
-	async () => {
-		const resp = await fetch('http://localhost:7000/personall');
-		if (resp.ok) {
-			const personnes = await resp.json();
-			return { personnes };
-		}
-	}
-);
-
 export const getCompaniesAsync = createAsyncThunk(
 	'Persons/getPersonsAsync',
 	async () => {
@@ -70,13 +59,10 @@ export const getCompaniesAsync = createAsyncThunk(
 // 	}
 // );
 
-export const personAsyncSlice = createSlice({
+export const companieAsyncSlice = createSlice({
 	name: 'person',
 	initialState: [],
 	extraReducers: {
-		[getPersonsAsync.fulfilled]: (state, action) => {
-			return action.payload.person;
-		},
 		[getCompaniesAsync.fulfilled]: (state, action) => {
 			console.log(action.payload)
 			return action.payload.companie;
@@ -93,4 +79,4 @@ export const personAsyncSlice = createSlice({
 	},
 });
 
-export default personAsyncSlice.reducer;
+export default companieAsyncSlice.reducer;
