@@ -1,6 +1,6 @@
-# React redux todo app
-
-Source code for React redux todo app YouTube tutorial. Includes
+# React redux RKT todo app
+--
+Model to test the redux state manager using the RKT library
 
 - Finished source code
 - Starter code
@@ -34,6 +34,6 @@ The API is a dead basic node.js/express server. Clone the repo and run the follo
 - check its running by going to browser/postman
 
 ```
-localhost:7000/todos
+localhost:8080
 
 ```

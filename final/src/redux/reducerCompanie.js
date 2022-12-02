@@ -20,7 +20,7 @@ const companie = createSlice({
 		deleteCompanie: (state, action) => {
 			return state.filter(currentState => currentState.id !== action.payload.id)
 		},
-		update: (state, action) => {
+		updateCompanie: (state, action) => {
 			return state.filter(currentState => currentState.id !== action.payload.id)
 		}
 	}

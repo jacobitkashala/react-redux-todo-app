@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 export const getCompaniesAsync = createAsyncThunk(
 	'Persons/getPersonsAsync',
 	async () => {
-		const resp = await fetch('http://localhost:7000/companieall');
+		const resp = await fetch('http://localhost:8080/companieall');
 		if (resp.ok) {
 			const companies = await resp.json();
 			return { companies };
@@ -13,7 +13,7 @@ export const getCompaniesAsync = createAsyncThunk(
 export const addCompanieAsync = createAsyncThunk(
 	'addCompanie/addCompanieAsync',
 	async (payload) => {
-		const resp = await fetch('http://localhost:7000/companieadd', {
+		const resp = await fetch('http://localhost:8080/companieadd', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
