@@ -1,5 +1,5 @@
 # React redux RKT todo app
---
+
 Model to test the redux state manager using the RKT library
 
 - Finished source code
@@ -21,7 +21,7 @@ Clone the repo and run the following:
 The starter code is located in its own folder. To get it:
 
 - cd starter
-- npm install
+- yarn
 - npm start
 
 ## Running the API
@@ -29,8 +29,8 @@ The starter code is located in its own folder. To get it:
 The API is a dead basic node.js/express server. Clone the repo and run the following:
 
 - cd api
-- npm install
-- npm run server
+- yarn
+- yarn develop
 - check its running by going to browser/postman
 
 ```

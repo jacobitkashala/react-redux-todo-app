@@ -21,6 +21,7 @@ const companie = createSlice({
 			return state.filter(currentState => currentState.id !== action.payload.id)
 		},
 		updateCompanie: (state, action) => {
+
 			return state.filter(currentState => currentState.id !== action.payload.id)
 		}
 	}
