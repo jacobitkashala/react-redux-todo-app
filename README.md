@@ -1,5 +1,7 @@
-# React redux RKT todo app
+# React redux   Tennis games app
+> Tennis gammes made with Bootstrp and React.
 
+![preview](public/static/preview.png)
 Model to test the redux state manager using the RKT library
 
 - Finished source code
@@ -18,22 +20,8 @@ Clone the repo and run the following:
 
 ## Running the starter code
 
-The starter code is located in its own folder. To get it:
-
-- cd starter
-- yarn
-- npm start
-
-## Running the API
-
-The API is a dead basic node.js/express server. Clone the repo and run the following:
-
-- cd api
-- yarn
-- yarn develop
-- check its running by going to browser/postman
-
 ```
-localhost:8080
-
+cd  final
+yarn
+yarn start
 ```
