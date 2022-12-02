@@ -87,36 +87,36 @@ app.get('/companieall', (req, res) => {
 	res.send(companies)
 });
 
-app.post('/companieadd', (req, res) => {
+app.post('/login', (req, res) => {
 	const newCompanie = {
 		idCompanie: nanoid(),
-		companie: req.body.companie,
-		grade: req.body.grade
+		identifier:req.body.email,
+        password:req.body.password
 	};
-	companies.push(newCompanie);
-	return res.send(companies);
+	persons.push(newCompanie);
+	return res.send(persons);
 });
 
-// app.patch('/todos/:id', (req, res) => {
-// 	const id = req.params.id;
-// 	const index = todos.findIndex((todo) => todo.id == id);
-// 	const completed = Boolean(req.body.completed);
-// 	if (index > -1) {
-// 		todos[index].completed = completed;
-// 	}
-// 	return res.send(todos[index]);
-// });
+app.patch('/todos/:id', (req, res) => {
+	const id = req.params.id;
+	const index = todos.findIndex((todo) => todo.id == id);
+	const completed = Boolean(req.body.completed);
+	if (index > -1) {
+		todos[index].completed = completed;
+	}
+	return res.send(todos[index]);
+});
 
-// app.delete('/todos/:id', (req, res) => {
-// 	const id = req.params.id;
-// 	const index = todos.findIndex((todo) => todo.id == id);
-// 	if (index > -1) {
-// 		todos.splice(index, 1);
-// 	}
+app.delete('/todos/:id', (req, res) => {
+	const id = req.params.id;
+	const index = todos.findIndex((todo) => todo.id == id);
+	if (index > -1) {
+		todos.splice(index, 1);
+	}
 
-// 	res.send(todos);
-// });
+	res.send(todos);
+});
 
-const PORT = 7000;
+const PORT = 8080;
 
 app.listen(PORT, console.log(`Server running on port ${PORT}`.green.bold));
