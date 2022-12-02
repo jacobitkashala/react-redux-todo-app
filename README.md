@@ -1,7 +1,7 @@
 # React redux   Tennis games app
 > Tennis gammes made with Bootstrp and React.
 
-![preview](public/static/preview.png)
+![preview](final/public/static/preview.png)
 Model to test the redux state manager using the RKT library
 
 - Finished source code
